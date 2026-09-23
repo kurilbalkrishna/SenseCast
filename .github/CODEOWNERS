@@ -1,11 +1,11 @@
-# Module ownership (replace the handles with your GitHub usernames).
+# Module ownership.
 # Every pull request touching these paths needs a review from the other member.
 
 # Balkrishna Kuril - data & modeling
 /src/sensecast/generate/     @kurilbalkrishna
 /src/sensecast/ingest/       @kurilbalkrishna
-/src/sensecast/features/    @kurilbalkrishna
-/src/sensecast/models/      @kurilbalkrishna
+/src/sensecast/features/     @kurilbalkrishna
+/src/sensecast/models/       @kurilbalkrishna
 /src/sensecast/reconcile/    @kurilbalkrishna
 /src/sensecast/evaluation/   @kurilbalkrishna
 /tests/leakage/              @kurilbalkrishna
