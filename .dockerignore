@@ -1,0 +1,15 @@
+.git
+.venv
+venv
+__pycache__
+*.pyc
+.pytest_cache
+.ruff_cache
+data/raw
+data/processed
+data/quarantine
+data/ground_truth
+artifacts
+mlruns
+docs/03-evaluation/figures
+.env

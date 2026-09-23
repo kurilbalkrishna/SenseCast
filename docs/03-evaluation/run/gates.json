@@ -1,0 +1,109 @@
+{
+  "gates": [
+    {
+      "gate": "WAPE vs seasonal naive",
+      "value": "31.6% better",
+      "target": ">= 10% better",
+      "result": "PASS",
+      "detail": "final 0.407 vs B0 0.595"
+    },
+    {
+      "gate": "MASE, store level",
+      "value": "0.933",
+      "target": "< 1.0",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "gate": "Demand-sensing gain (festival + heavy-rain days)",
+      "value": "18.2%",
+      "target": ">= 5%",
+      "result": "PASS",
+      "detail": "M2 0.414 vs M1 0.506 on 84,683 rows"
+    },
+    {
+      "gate": "Pinball loss vs planner quantiles",
+      "value": "13.8% better",
+      "target": ">= 10% better",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "gate": "P10-P90 coverage",
+      "value": "85.6%",
+      "target": "75%-85%",
+      "result": "FAIL",
+      "detail": "by class: erratic 78%, intermittent 95%, lumpy 84%, new 91%, smooth 81%"
+    },
+    {
+      "gate": "Intermittent + lumpy MASE",
+      "value": "0.997",
+      "target": "<= B0 (1.093)",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "gate": "Cold-start WAPE, first 28 days",
+      "value": "57.4% better",
+      "target": ">= 10% better",
+      "result": "PASS",
+      "detail": "final 0.477 vs category mean 1.121 (1,849 rows)"
+    },
+    {
+      "gate": "Hierarchy coherence error",
+      "value": "0.0e+00",
+      "target": "< 1e-06",
+      "result": "PASS",
+      "detail": "served method: wls_var"
+    },
+    {
+      "gate": "Fill rate at 95% service target (P2)",
+      "value": "96.2%",
+      "target": ">= 95%",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "gate": "Inventory needed for a 95% fill rate, P2 vs P0",
+      "value": "-39.2%",
+      "target": "<= +0%",
+      "result": "PASS",
+      "detail": "P0 3.23 vs P2 1.96 days of cover"
+    },
+    {
+      "gate": "Stockout days vs manual policy",
+      "value": "61.1% fewer",
+      "target": ">= 20% fewer",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "gate": "Forecast stability",
+      "value": "0.082",
+      "target": "<= 0.15",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "gate": "Leakage probe (future scrambled)",
+      "value": "0 features changed",
+      "target": "0",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "gate": "API latency p95",
+      "value": "149 ms",
+      "target": "< 300 ms",
+      "result": "PASS",
+      "detail": "400 requests, 8 concurrent"
+    },
+    {
+      "gate": "Full batch run",
+      "value": "5.4 min",
+      "target": "< 10 min",
+      "result": "PASS",
+      "detail": ""
+    }
+  ]
+}

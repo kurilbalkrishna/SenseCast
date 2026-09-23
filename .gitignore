@@ -1,0 +1,26 @@
+# data and outputs are reproducible from code + config: never commit them
+data/raw/
+data/small/
+data/processed/
+data/quarantine/
+data/ground_truth/
+data/external/*.parquet
+artifacts/
+mlruns/
+*.db
+# python
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+# secrets
+.env
+*.pem
+*.key
+# os / editors
+.DS_Store
+.idea/
+.vscode/

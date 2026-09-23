@@ -1,0 +1,138 @@
+# SenseCast default configuration (full-size run).
+# Every number that changes a result lives here, so a run is reproducible from
+# (code commit, this file, seed).
+
+seed: 42
+
+paths:
+  data: data            # raw/, processed/, quarantine/, external/ live under here
+  artifacts: artifacts  # models, forecasts, metrics, audit.db
+  reports: docs/03-evaluation  # generated results.md + figures
+
+world:
+  start: "2023-09-21"
+  end: "2026-09-20"          # last day of observed sales; the world runs 14 days past this
+  n_items: 150
+  category_mix:              # items per category (must sum to n_items)
+    beverages: 45
+    snacks: 45
+    personal_care: 35
+    monsoon_seasonal: 25
+  demand_class_mix:          # share of items per demand class
+    smooth: 0.40
+    erratic: 0.20
+    intermittent: 0.30
+    lumpy: 0.10
+  new_item_share: 0.10       # items launched during the period (cold-start)
+  stores:
+    - {store_id: S01, city: Mumbai}
+    - {store_id: S02, city: Mumbai}
+    - {store_id: S03, city: Mumbai}
+    - {store_id: S04, city: Mumbai}
+    - {store_id: S05, city: Pune}
+    - {store_id: S06, city: Pune}
+    - {store_id: S07, city: Pune}
+    - {store_id: S08, city: Nashik}
+    - {store_id: S09, city: Nashik}
+    - {store_id: S10, city: Nashik}
+  search_lead_days: 5        # search interest leads demand by this many days
+  dq_injection:              # raw-feed defects the ingestion layer must catch
+    duplicate_rate: 0.0005
+    negative_rate: 0.0001
+    null_price_rate: 0.0001
+    future_rows: 25
+
+weather:
+  source: auto               # auto | openmeteo | synthetic
+  cities:
+    Mumbai: {lat: 19.0760, lon: 72.8777}
+    Pune:   {lat: 18.5204, lon: 73.8567}
+    Nashik: {lat: 19.9975, lon: 73.7898}
+
+inventory:
+  lead_time_days: 3
+  review_days: 1
+  hist_cover_multiplier: 1.3   # historical (manual) policy used to create the inventory feed
+  supplier_miss_rate: 0.01
+
+censoring: impute            # impute | drop | ignore  (how stockout days enter the training target)
+
+reconciliation:
+  method: wls_var            # bottom_up | wls_var | mint_shrink  (served to the API)
+
+backtest:
+  horizon: 14
+  origin_step: 7
+  n_test_origins: 8
+  n_cal_origins: 8
+  max_train_origins: 78
+  min_history_days: 60
+
+lgbm:
+  n_estimators: 300
+  quantile_estimators: 200
+  quantile_bagging_fraction: 0.5
+  max_bin: 127
+  learning_rate: 0.05
+  num_leaves: 63
+  min_data_in_leaf: 100
+  feature_fraction: 0.8
+  bagging_fraction: 0.8
+  bagging_freq: 1
+  lambda_l2: 1.0
+  tweedie_variance_power: 1.2
+  n_jobs: -1
+
+intermittent:
+  alpha: 0.1
+  beta: 0.1
+  adi_cut: 1.32
+  cv2_cut: 0.49
+
+explain:
+  test_sample_rows: 3000
+  production_horizons: [1, 4, 7, 14]
+
+coldstart:
+  k_analogs: 5
+  young_age_days: 28
+
+conformal:
+  alpha: 0.2                 # P10-P90 => nominal 80% coverage
+
+simulation:
+  n_paths: 100
+  frontier_paths: 40
+  frontier_service_targets: [0.80, 0.85, 0.90, 0.95, 0.98]
+  frontier_p0_buffers: [0.0, 0.2, 0.4, 0.7, 1.0]
+  service_target: 0.95
+  p0_buffer: 0.20
+  holding_rate_daily: 0.0007   # ~25% a year of item price
+  margin: 0.25
+  overstock_cover_days: 21
+
+monitoring:
+  psi_alert: 0.2
+  bias_alert: 0.15
+
+# Go / no-go thresholds (relative to baselines). Frozen before the final backtest.
+thresholds:
+  wape_gain_vs_b0: 0.10
+  mase_store_max: 1.0
+  sensing_gain_event_days: 0.05
+  pinball_gain_vs_b1: 0.10
+  coverage_low: 0.75
+  coverage_high: 0.85
+  coldstart_gain_vs_catmean: 0.10
+  coherence_max_error: 1.0e-6
+  fill_rate_min: 0.95          # P2 at its 95% service target
+  inventory_at_95_fill_vs_p0: 0.0   # P2 needs no more inventory than P0 to reach a 95% fill rate
+  stockout_reduction_vs_p0: 0.20
+  stability_max: 0.15
+  api_p95_ms: 300
+  batch_minutes_max: 10
+
+mlflow:
+  enabled: true
+  tracking_uri: "file:./mlruns"
+  experiment: sensecast-backtest

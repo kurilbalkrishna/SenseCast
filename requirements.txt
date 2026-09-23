@@ -1,0 +1,20 @@
+# Runtime dependencies (pinned versions that the test suite was run against).
+numpy==2.4.4
+pandas==3.0.2
+scipy==1.17.1
+pyarrow==25.0.1
+lightgbm==4.7.0
+pandera==0.33.1
+holidays==0.105
+PyYAML==6.0.3
+matplotlib==3.10.9
+mlflow-skinny==3.16.1
+# API
+fastapi==0.141.1
+uvicorn==0.46.0
+pydantic==2.13.3
+prometheus-client==0.26.0
+httpx==0.28.1
+# Dashboard
+streamlit==1.64.0
+altair==6.3.0

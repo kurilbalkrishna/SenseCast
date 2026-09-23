@@ -1,0 +1,46 @@
+# Small profile for tests and CI: same code paths, ~1 minute end to end.
+# Keys here override configs/default.yaml.
+# Separate output folders so a quick run never overwrites the full run's results.
+
+paths:
+  data: data/small
+  artifacts: artifacts/small
+  reports: artifacts/small/report
+
+world:
+  start: "2025-05-01"
+  n_items: 24
+  category_mix:
+    beverages: 7
+    snacks: 7
+    personal_care: 5
+    monsoon_seasonal: 5
+  stores:
+    - {store_id: S01, city: Mumbai}
+    - {store_id: S05, city: Pune}
+    - {store_id: S08, city: Nashik}
+  new_item_share: 0.25
+
+weather:
+  source: synthetic
+
+backtest:
+  n_test_origins: 3
+  n_cal_origins: 3
+  max_train_origins: 30
+
+lgbm:
+  n_estimators: 80
+  quantile_estimators: 60
+  num_leaves: 15
+  min_data_in_leaf: 20
+
+explain:
+  test_sample_rows: 1000
+
+simulation:
+  n_paths: 20
+  frontier_paths: 10
+
+mlflow:
+  enabled: false

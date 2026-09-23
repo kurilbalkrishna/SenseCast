@@ -1,0 +1,23 @@
+# Module ownership (replace the handles with your GitHub usernames).
+# Every pull request touching these paths needs a review from the other member.
+
+# Member A - data & modeling
+/src/sensecast/generate/     @member-a
+/src/sensecast/ingest/       @member-a
+/src/sensecast/features/     @member-a
+/src/sensecast/models/       @member-a
+/src/sensecast/reconcile/    @member-a
+/src/sensecast/evaluation/   @member-a
+/tests/leakage/              @member-a
+/docs/model_card.md          @member-a
+
+# Member B - product, decision layer & ops
+/src/sensecast/simulate/     @member-b
+/src/sensecast/api/          @member-b
+/src/sensecast/monitor/      @member-b
+/dashboard/                  @member-b
+/Dockerfile                  @member-b
+/docker-compose.yml          @member-b
+/.github/workflows/          @member-b
+/tests/integration/          @member-b
+/docs/guides/                @member-b

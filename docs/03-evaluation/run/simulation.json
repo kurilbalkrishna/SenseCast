@@ -1,0 +1,185 @@
+{
+  "policies": {
+    "P0_manual": {
+      "fill_rate": 0.9099021206522518,
+      "stockout_day_rate": 0.07689583333333333,
+      "stockout_days_per_series": 4.306166666666666,
+      "avg_on_hand_units": 32342.88089285714,
+      "avg_days_of_cover": 1.8325304122191992,
+      "overstock_units_per_day": 1.2045806101968213,
+      "lost_units_per_day": 1590.0821428571428,
+      "units_ordered_per_day": 16104.34875,
+      "holding_cost_inr_per_day": 4528.4578732499995,
+      "lost_margin_inr_per_day": 105953.2003125,
+      "total_cost_inr_per_day": 110481.65818574998
+    },
+    "P1_point_ml": {
+      "fill_rate": 0.951077446267066,
+      "stockout_day_rate": 0.027599454365079365,
+      "stockout_days_per_series": 1.5455694444444443,
+      "avg_on_hand_units": 39386.30767857143,
+      "avg_days_of_cover": 2.2316072240164844,
+      "overstock_units_per_day": 61.63688864406468,
+      "lost_units_per_day": 863.4041071428571,
+      "units_ordered_per_day": 16781.244821428572,
+      "holding_cost_inr_per_day": 4822.377221374999,
+      "lost_margin_inr_per_day": 65016.766071428574,
+      "total_cost_inr_per_day": 69839.14329280358
+    },
+    "P2_uncertainty": {
+      "fill_rate": 0.9622041416758054,
+      "stockout_day_rate": 0.02991418650793651,
+      "stockout_days_per_series": 1.6751944444444447,
+      "avg_on_hand_units": 41932.93517857143,
+      "avg_days_of_cover": 2.375897782356153,
+      "overstock_units_per_day": 5.579635209316953,
+      "lost_units_per_day": 667.0358928571428,
+      "units_ordered_per_day": 16952.74982142857,
+      "holding_cost_inr_per_day": 6224.311718250001,
+      "lost_margin_inr_per_day": 44368.23316964286,
+      "total_cost_inr_per_day": 50592.54488789286
+    }
+  },
+  "stockout_reduction_P2_vs_P0": 0.6109777966998232,
+  "inventory_change_P2_vs_P0": 0.2965120614172696,
+  "cost_change_P2_vs_P0": -0.542072904057677,
+  "frontier": {
+    "points": [
+      {
+        "policy": "P0_manual",
+        "knob": 0.0,
+        "fill_rate": 0.8694054604966424,
+        "days_of_cover": 1.203044000301047,
+        "stockout_day_rate": 0.11677610367063493,
+        "total_cost_inr_per_day": 150184.76278138394
+      },
+      {
+        "policy": "P0_manual",
+        "knob": 0.2,
+        "fill_rate": 0.9101017956015309,
+        "days_of_cover": 1.8321091541364332,
+        "stockout_day_rate": 0.07690941220238096,
+        "total_cost_inr_per_day": 110046.73951383929
+      },
+      {
+        "policy": "P0_manual",
+        "knob": 0.4,
+        "fill_rate": 0.9348197071759786,
+        "days_of_cover": 2.5095373624444215,
+        "stockout_day_rate": 0.0552415054563492,
+        "total_cost_inr_per_day": 84500.1067475
+      },
+      {
+        "policy": "P0_manual",
+        "knob": 0.7,
+        "fill_rate": 0.957245179567868,
+        "days_of_cover": 3.5713211399119436,
+        "stockout_day_rate": 0.036777033730158726,
+        "total_cost_inr_per_day": 61219.45648669643
+      },
+      {
+        "policy": "P0_manual",
+        "knob": 1.0,
+        "fill_rate": 0.9699710146628536,
+        "days_of_cover": 4.664725959184402,
+        "stockout_day_rate": 0.0264360119047619,
+        "total_cost_inr_per_day": 48849.82064486608
+      },
+      {
+        "policy": "P1_point_ml",
+        "knob": 0.8,
+        "fill_rate": 0.932611475192506,
+        "days_of_cover": 1.645307012428959,
+        "stockout_day_rate": 0.04869016617063492,
+        "total_cost_inr_per_day": 86233.91726196428
+      },
+      {
+        "policy": "P1_point_ml",
+        "knob": 0.85,
+        "fill_rate": 0.938062430544554,
+        "days_of_cover": 1.7844372945798084,
+        "stockout_day_rate": 0.04201419890873016,
+        "total_cost_inr_per_day": 81624.19917267858
+      },
+      {
+        "policy": "P1_point_ml",
+        "knob": 0.9,
+        "fill_rate": 0.9439457793664638,
+        "days_of_cover": 1.9621453640869437,
+        "stockout_day_rate": 0.035206473214285716,
+        "total_cost_inr_per_day": 76393.26276901786
+      },
+      {
+        "policy": "P1_point_ml",
+        "knob": 0.95,
+        "fill_rate": 0.9511546390464356,
+        "days_of_cover": 2.231478976323335,
+        "stockout_day_rate": 0.027740575396825395,
+        "total_cost_inr_per_day": 69590.74611401785
+      },
+      {
+        "policy": "P1_point_ml",
+        "knob": 0.98,
+        "fill_rate": 0.9576073287025361,
+        "days_of_cover": 2.5389034839106825,
+        "stockout_day_rate": 0.021901351686507937,
+        "total_cost_inr_per_day": 63193.93179401786
+      },
+      {
+        "policy": "P2_uncertainty",
+        "knob": 0.8,
+        "fill_rate": 0.9399971978151053,
+        "days_of_cover": 1.713052031343568,
+        "stockout_day_rate": 0.052297557043650786,
+        "total_cost_inr_per_day": 71606.40055700894
+      },
+      {
+        "policy": "P2_uncertainty",
+        "knob": 0.85,
+        "fill_rate": 0.9466437992730052,
+        "days_of_cover": 1.86895882773075,
+        "stockout_day_rate": 0.045619419642857144,
+        "total_cost_inr_per_day": 65282.660623035714
+      },
+      {
+        "policy": "P2_uncertainty",
+        "knob": 0.9,
+        "fill_rate": 0.953792380864836,
+        "days_of_cover": 2.070863980533373,
+        "stockout_day_rate": 0.038200644841269844,
+        "total_cost_inr_per_day": 58457.5820771875
+      },
+      {
+        "policy": "P2_uncertainty",
+        "knob": 0.95,
+        "fill_rate": 0.9622200569103061,
+        "days_of_cover": 2.375957608683287,
+        "stockout_day_rate": 0.029964657738095236,
+        "total_cost_inr_per_day": 50397.09168169643
+      },
+      {
+        "policy": "P2_uncertainty",
+        "knob": 0.98,
+        "fill_rate": 0.9693332254415421,
+        "days_of_cover": 2.7273530249331936,
+        "stockout_day_rate": 0.02361204117063492,
+        "total_cost_inr_per_day": 43630.99586598214
+      }
+    ],
+    "cover_days_at_95_fill": {
+      "P0_manual": 3.2282820281568787,
+      "P1_point_ml": 2.1883399614150973,
+      "P2_uncertainty": 1.9637516494836038
+    }
+  },
+  "n_series": 1440,
+  "n_days": 56,
+  "n_paths": 100,
+  "lead_time": 3,
+  "review": 1,
+  "service_target": 0.95,
+  "window": [
+    "2026-07-20",
+    "2026-09-13"
+  ]
+}

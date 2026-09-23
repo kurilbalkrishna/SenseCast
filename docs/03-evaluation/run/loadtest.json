@@ -1,0 +1,11 @@
+{
+  "requests": 400,
+  "concurrency": 8,
+  "p50_ms": 71.81632700030605,
+  "p95_ms": 149.4963803504104,
+  "p99_ms": 228.0283256597067,
+  "max_ms": 402.5320679993456,
+  "errors": 0,
+  "throughput_rps": 14.696544561335138,
+  "note": "single uvicorn worker, parquet artifacts cached in memory"
+}

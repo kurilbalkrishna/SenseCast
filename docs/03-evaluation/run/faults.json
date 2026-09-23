@@ -1,0 +1,111 @@
+{
+  "leakage_probe": {
+    "origin": 1032,
+    "features_checked": 36,
+    "features_changed": [],
+    "max_abs_change": 0.0,
+    "passed": true
+  },
+  "weather_outage": {
+    "wape_normal": 0.40878875909807466,
+    "wape_outage": 0.4655476807514507,
+    "wape_points_lost": 5.675892165337604,
+    "wape_sales_only_m1": 0.4918895724299021,
+    "wape_heavy_rain_normal": 0.4205435318650106,
+    "wape_heavy_rain_outage": 0.43128601094673397,
+    "rows_flagged": 167100,
+    "rows_total": 167100,
+    "passed": true
+  },
+  "search_spike": {
+    "category": "snacks",
+    "forecast_shift": 0.03034539520740509,
+    "naive_feature_jump": 0.25667619705200195,
+    "passed": true
+  },
+  "censoring_ablation": {
+    "variants": {
+      "ignore": {
+        "bias_vs_true_demand": -0.0871696570793664,
+        "bias_top10_vs_true_demand": -0.11247792813258961,
+        "wape_vs_true_demand": 0.44514338727086655,
+        "wape_vs_observed_sales": 0.4154805865367849
+      },
+      "drop": {
+        "bias_vs_true_demand": -0.10083605631262622,
+        "bias_top10_vs_true_demand": -0.11822059710229167,
+        "wape_vs_true_demand": 0.444639494469422,
+        "wape_vs_observed_sales": 0.4140122328954639
+      },
+      "impute": {
+        "bias_vs_true_demand": -0.07586780565128308,
+        "bias_top10_vs_true_demand": -0.10266715596712105,
+        "wape_vs_true_demand": 0.44686630093632695,
+        "wape_vs_observed_sales": 0.4189969748252865
+      }
+    },
+    "least_biased": "impute",
+    "used_in_production": "impute",
+    "passed": true
+  },
+  "store_demand_drop": {
+    "store": "S01",
+    "injected_drop": 0.2,
+    "weekly": [
+      {
+        "week": 1,
+        "bias": 0.2107,
+        "alert": true
+      },
+      {
+        "week": 2,
+        "bias": 0.1493,
+        "alert": false
+      },
+      {
+        "week": 3,
+        "bias": 0.1178,
+        "alert": false
+      },
+      {
+        "week": 4,
+        "bias": 0.1569,
+        "alert": true
+      },
+      {
+        "week": 5,
+        "bias": 0.2904,
+        "alert": true
+      },
+      {
+        "week": 6,
+        "bias": 0.346,
+        "alert": true
+      },
+      {
+        "week": 7,
+        "bias": 0.268,
+        "alert": true
+      },
+      {
+        "week": 8,
+        "bias": 0.2484,
+        "alert": true
+      }
+    ],
+    "detected_in_week": 1,
+    "passed": true
+  },
+  "dirty_feed": {
+    "quarantined": {
+      "duplicate_key": 757,
+      "negative_units": 151,
+      "bad_price": 151,
+      "date_in_future": 25
+    },
+    "injected": {
+      "future_rows": 25
+    },
+    "passed": true
+  }
+}

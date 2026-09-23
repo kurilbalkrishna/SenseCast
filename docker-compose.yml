@@ -1,0 +1,57 @@
+# docker compose up --build
+#   pipeline  runs once: generate -> ingest -> backtest -> faults -> simulate -> monitor -> report
+#   api       serves forecasts and the approval workflow on :8000 once the pipeline has finished
+#   dashboard planner UI on :8501
+#   mlflow    (optional) experiment UI on :5000  -> docker compose --profile tracking up
+name: sensecast
+
+x-common: &common
+  build: .
+  image: sensecast:1.0.0
+  env_file:
+    - path: .env
+      required: false
+  volumes:
+    - ./data:/app/data
+    - ./artifacts:/app/artifacts
+    - ./mlruns:/app/mlruns
+    - ./docs/03-evaluation:/app/docs/03-evaluation
+
+services:
+  pipeline:
+    <<: *common
+    command: ["python", "-m", "sensecast.cli", "all"]
+    healthcheck:
+      disable: true
+    restart: "no"
+
+  api:
+    <<: *common
+    depends_on:
+      pipeline:
+        condition: service_completed_successfully
+    ports: ["8000:8000"]
+    environment:
+      SENSECAST_AUTH_MODE: ${SENSECAST_AUTH_MODE:-off}
+    restart: unless-stopped
+
+  dashboard:
+    <<: *common
+    depends_on:
+      api:
+        condition: service_healthy
+    command: ["streamlit", "run", "dashboard/app.py", "--server.port", "8501", "--server.address", "0.0.0.0"]
+    environment:
+      API_URL: http://api:8000
+    ports: ["8501:8501"]
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "http://localhost:8501/_stcore/health"]
+    restart: unless-stopped
+
+  mlflow:
+    image: python:3.11-slim
+    profiles: ["tracking"]
+    command: sh -c "pip install -q mlflow==3.16.1 && mlflow ui --backend-store-uri file:/mlruns --host 0.0.0.0 --port 5000"
+    volumes:
+      - ./mlruns:/mlruns
+    ports: ["5000:5000"]

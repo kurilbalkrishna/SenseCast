@@ -1,0 +1,12 @@
+{
+  "minutes": 5.38,
+  "profile": "default",
+  "steps": [
+    "generate",
+    "ingest",
+    "backtest",
+    "faults",
+    "simulate",
+    "monitor"
+  ]
+}
