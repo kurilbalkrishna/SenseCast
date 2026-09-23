@@ -1,7 +1,7 @@
 # Module ownership (replace the handles with your GitHub usernames).
 # Every pull request touching these paths needs a review from the other member.
 
-# Member A - data & modeling
+# Balkrishna Kuril - data & modeling
 /src/sensecast/generate/     @member-a
 /src/sensecast/ingest/       @member-a
 /src/sensecast/features/     @member-a
@@ -11,7 +11,7 @@
 /tests/leakage/              @member-a
 /docs/model_card.md          @member-a
 
-# Member B - product, decision layer & ops
+# Chaitanya - product, decision layer & ops
 /src/sensecast/simulate/     @member-b
 /src/sensecast/api/          @member-b
 /src/sensecast/monitor/      @member-b
