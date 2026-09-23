@@ -115,6 +115,11 @@ foreach ($r in $rows) {
         $url = $have[$r.title].url
         $isOpen = $have[$r.title].state -eq "OPEN"
         $verb = "fixed "
+        if (-not $isOpen -and $r.status -ne "done") {
+            # A todo that was closed on GitHub (e.g. by a merged PR) is finished: GitHub wins, leave it alone.
+            Write-Host ("  {0,2}. kept   closed  {1}" -f $n, $r.title)
+            continue
+        }
     } else {
         $body = "$($r.body)`n`n**Owner:** $(($who | ForEach-Object { "@$_" }) -join ', ')`n`n_Imported from docs/01-brief/backlog.csv_"
         [IO.File]::WriteAllText($tmp, $body)  # UTF-8 without BOM
@@ -145,7 +150,11 @@ foreach ($m in ($rows.milestone | Sort-Object -Unique)) {
     if ($open -eq 0) {
         Invoke-Gh api -X PATCH "repos/$Repo/milestones/$($msNumbers[$m])" -f "state=closed" | Out-Null
         Write-Host "  closed $m"
-    } else { Write-Host "  open   $m ($open to do)" }
+    } else {
+        # Reopen in case a new todo row was added to a milestone closed on an earlier run.
+        Invoke-Gh api -X PATCH "repos/$Repo/milestones/$($msNumbers[$m])" -f "state=open" | Out-Null
+        Write-Host "  open   $m ($open to do)"
+    }
 }
 
 Write-Host "`nDone." -ForegroundColor Green
