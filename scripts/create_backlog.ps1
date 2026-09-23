@@ -123,12 +123,8 @@ foreach ($r in $rows) {
     } else {
         $body = "$($r.body)`n`n**Owner:** $(($who | ForEach-Object { "@$_" }) -join ', ')`n`n_Imported from docs/01-brief/backlog.csv_"
         [IO.File]::WriteAllText($tmp, $body)  # UTF-8 without BOM
-        $labelArgs = @()
-        foreach ($label in ($r.labels -split ",")) { $labelArgs += @("--label", $label.Trim()) }
-        $assigneeArgs = @()
-        foreach ($person in $who) { $assigneeArgs += @("--assignee", $person) }
         $url = (Invoke-GhRetry issue create --repo $Repo --title $r.title --body-file $tmp `
-                --milestone $r.milestone @labelArgs @assigneeArgs).Trim().Split("`n")[-1]
+                --label $r.labels --milestone $r.milestone --assignee ($who -join ",")).Trim().Split("`n")[-1]
         $isOpen = $true
         $verb = "new   "
         Start-Sleep -Seconds 2  # give GitHub a moment before editing the new issue
@@ -142,8 +138,6 @@ foreach ($r in $rows) {
     }
     if ($r.status -eq "done" -and $isOpen) {
         Invoke-GhRetry issue close $url --repo $Repo --reason completed | Out-Null
-    } elseif ($r.status -eq "todo" -and -not $isOpen) {
-        Invoke-GhRetry issue reopen $url --repo $Repo | Out-Null
     }
     Write-Host ("  {0,2}. {1} {2,-4}  {3}" -f $n, $verb, $r.status, $r.title)
 }
