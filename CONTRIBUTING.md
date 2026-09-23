@@ -30,8 +30,11 @@ other member reviews. Both members must be able to explain every module in the v
 
 ## Setting up the GitHub side
 
-1. Create the repo, push `main`, enable branch protection (require PR, 1 review, status check `ci / test`).
-2. Import the backlog: create milestones M1 to M7, then create issues from `docs/01-brief/backlog.csv`
-   (GitHub CLI: `gh issue create --title ... --body ... --label ... --milestone ...`).
-3. Create a Project board (Todo / In progress / In review / Done) and add all issues.
-4. Replace `@member-a` / `@member-b` in `.github/CODEOWNERS` with your usernames.
+1. Create the repo, push `main`, and add a branch ruleset on `main`: require a pull request with 1
+   approval, require the status checks `test`, `secrets` and `docker`, block force pushes and deletions.
+2. Import the backlog and the project board with the GitHub CLI (`gh auth refresh -s project` first):
+   `powershell -ExecutionPolicy Bypass -File scripts\create_backlog.ps1`. It creates the labels,
+   milestones M1 to M8, one issue per row of `docs/01-brief/backlog.csv` assigned to its owner, and
+   the "SenseCast board" project; rows marked `done` are closed and placed in Done. Re-running it
+   does not create duplicates.
+3. Owners in `.github/CODEOWNERS` are `@kurilbalkrishna` and `@chaitanya3132-jpg`.
