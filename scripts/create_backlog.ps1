@@ -123,8 +123,12 @@ foreach ($r in $rows) {
     } else {
         $body = "$($r.body)`n`n**Owner:** $(($who | ForEach-Object { "@$_" }) -join ', ')`n`n_Imported from docs/01-brief/backlog.csv_"
         [IO.File]::WriteAllText($tmp, $body)  # UTF-8 without BOM
+        $labelArgs = @()
+        foreach ($label in ($r.labels -split ",")) { $labelArgs += @("--label", $label.Trim()) }
+        $assigneeArgs = @()
+        foreach ($person in $who) { $assigneeArgs += @("--assignee", $person) }
         $url = (Invoke-GhRetry issue create --repo $Repo --title $r.title --body-file $tmp `
-                --label $r.labels --milestone $r.milestone --assignee ($who -join ",")).Trim().Split("`n")[-1]
+                --milestone $r.milestone @labelArgs @assigneeArgs).Trim().Split("`n")[-1]
         $isOpen = $true
         $verb = "new   "
         Start-Sleep -Seconds 2  # give GitHub a moment before editing the new issue
