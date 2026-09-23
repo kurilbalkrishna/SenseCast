@@ -138,6 +138,8 @@ foreach ($r in $rows) {
     }
     if ($r.status -eq "done" -and $isOpen) {
         Invoke-GhRetry issue close $url --repo $Repo --reason completed | Out-Null
+    } elseif ($r.status -eq "todo" -and -not $isOpen) {
+        Invoke-GhRetry issue reopen $url --repo $Repo | Out-Null
     }
     Write-Host ("  {0,2}. {1} {2,-4}  {3}" -f $n, $verb, $r.status, $r.title)
 }
