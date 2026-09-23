@@ -1,23 +1,23 @@
-# Module ownership (replace the handles with your GitHub usernames).
+# Module ownership.
 # Every pull request touching these paths needs a review from the other member.
 
-# Member A - data & modeling
-/src/sensecast/generate/     @member-a
-/src/sensecast/ingest/       @member-a
-/src/sensecast/features/     @member-a
-/src/sensecast/models/       @member-a
-/src/sensecast/reconcile/    @member-a
-/src/sensecast/evaluation/   @member-a
-/tests/leakage/              @member-a
-/docs/model_card.md          @member-a
+# Balkrishna Kuril - data & modeling
+/src/sensecast/generate/     @kurilbalkrishna
+/src/sensecast/ingest/       @kurilbalkrishna
+/src/sensecast/features/     @kurilbalkrishna
+/src/sensecast/models/       @kurilbalkrishna
+/src/sensecast/reconcile/    @kurilbalkrishna
+/src/sensecast/evaluation/   @kurilbalkrishna
+/tests/leakage/              @kurilbalkrishna
+/docs/model_card.md          @kurilbalkrishna
 
-# Member B - product, decision layer & ops
-/src/sensecast/simulate/     @member-b
-/src/sensecast/api/          @member-b
-/src/sensecast/monitor/      @member-b
-/dashboard/                  @member-b
-/Dockerfile                  @member-b
-/docker-compose.yml          @member-b
-/.github/workflows/          @member-b
-/tests/integration/          @member-b
-/docs/guides/                @member-b
+# Chaitanya - product, decision layer & ops
+/src/sensecast/simulate/     @chaitanya3132-jpg
+/src/sensecast/api/          @chaitanya3132-jpg
+/src/sensecast/monitor/      @chaitanya3132-jpg
+/dashboard/                  @chaitanya3132-jpg
+/Dockerfile                  @chaitanya3132-jpg
+/docker-compose.yml          @chaitanya3132-jpg
+/.github/workflows/          @chaitanya3132-jpg
+/tests/integration/          @chaitanya3132-jpg
+/docs/guides/                @chaitanya3132-jpg
