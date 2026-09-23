@@ -12,12 +12,12 @@
 /docs/model_card.md          @kurilbalkrishna
 
 # Chaitanya - product, decision layer & ops
-/src/sensecast/simulate/     @member-b
-/src/sensecast/api/          @member-b
-/src/sensecast/monitor/      @member-b
-/dashboard/                  @member-b
-/Dockerfile                  @member-b
-/docker-compose.yml          @member-b
-/.github/workflows/          @member-b
-/tests/integration/          @member-b
-/docs/guides/                @member-b
+/src/sensecast/simulate/     @chaitanya3132-jpg
+/src/sensecast/api/          @chaitanya3132-jpg
+/src/sensecast/monitor/      @chaitanya3132-jpg
+/dashboard/                  @chaitanya3132-jpg
+/Dockerfile                  @chaitanya3132-jpg
+/docker-compose.yml          @chaitanya3132-jpg
+/.github/workflows/          @chaitanya3132-jpg
+/tests/integration/          @chaitanya3132-jpg
+/docs/guides/                @chaitanya3132-jpg
